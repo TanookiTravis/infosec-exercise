@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oHUP2F/k4IT57wbHm7LYoD0ADlqzP7legOO1yzwUXQC5o6gyvpHjemk24uw7oGvIGxznswjXj/ySXG3frmG8aQ==",
+  "dgSpecHash": "PZXlzXABXbef6x0p532ZlJMm0RoHsQP8CXZbAvRGwHab0+hJdzAFoje+odpSPqovvSoppQWvg9C0iW6ZRFPgCQ==",
   "success": true,
-  "projectFilePath": "/Users/travis.hendricks/Documents/quick-test/infosec-exercise/travishendricks.csproj",
+  "projectFilePath": "/Users/travis.hendricks/Documents/countries-exercise/infosec-exercise/travishendricks.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
