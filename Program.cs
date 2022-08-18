@@ -23,6 +23,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapControllers();
+
 app.MapRazorPages();
 
 app.Run();
