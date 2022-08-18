@@ -17,16 +17,13 @@ public class CountryModel {
     public string SubRegion { get; set; } = string.Empty;
     [JsonPropertyName("population")]
     public int Population { get; set; } = 0;
-    // [JsonPropertyName("languages")]
-    // public List<CountryLanguage> Languages { get; set; } = new List<CountryLanguage>();
+    [JsonPropertyName("languages")]
+    public Dictionary<string, string> Languages { get; set; }
 }
 
 public class CountryName {
     [JsonPropertyName("common")]
     public string Common { get; set; } = string.Empty;
+    [JsonPropertyName("official")]
+    public string Official { get; set; } = string.Empty;
 }
-
-// public class CountryLanguage {
-//     [JsonPropertyName("{*}")]
-//     public string Language { get; set; } = string.Empty;
-// }

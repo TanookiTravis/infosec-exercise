@@ -6,11 +6,11 @@ namespace travishendricks.Controllers;
 [ApiController]
 [Route("api/[controller]")]
 [Produces("application/json")]
-public class TestController : Controller
+public class CountryController : Controller
 {
     private readonly IHttpRequestService httpService;
 
-    public TestController(
+    public CountryController(
         // ILogger<ProjectController> logger, 
         IHttpRequestService httpService)
     {
@@ -18,17 +18,30 @@ public class TestController : Controller
         this.httpService = httpService;
     }
 
-    [HttpGet]
-    // https://localhost:7186/api/test
-    public JsonResult Test() {
+    [HttpGet()]
+    // https://localhost:7186/api/country
+    public JsonResult GetFiltered(string filterTerm) {
         var countries = httpService.GetUrl<List<CountryModel>>("https://restcountries.com/v3.1/name/peru");
         return new JsonResult(countries);
     }
 
-    [HttpGet("Testing")]
-    public CountryModel Testing()
-    {
-        var countryModel = new CountryModel();
-        return countryModel;
+    [HttpGet("name/{name}")]
+    // https://localhost:7186/api/country/name/peru
+    public JsonResult GetByName(string name) {
+        var countries = httpService.GetUrl<List<CountryModel>>("https://restcountries.com/v3.1/name/" + name);
+        return new JsonResult(countries);
+    }
+
+    [HttpGet("filter/{term}")]
+    // https://localhost:7186/api/country/filter/pe
+    public JsonResult GetByTerm(string term) {
+        var countries = httpService.GetUrl<List<CountryModel>>("https://restcountries.com/v3.1/all");
+        var termLowerCase = term.ToLower();
+        var filterdCountries = countries
+            .Where(c => c.Name.Common.ToLower().Contains(termLowerCase) 
+                || c.Name.Official.ToLower().Contains(termLowerCase)
+                || c.AlphaCode2.ToLower().Contains(termLowerCase)
+                || c.AlphaCode3.ToLower().Contains(termLowerCase));
+        return new JsonResult(filterdCountries);
     }
 }
