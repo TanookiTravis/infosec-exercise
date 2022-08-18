@@ -19,7 +19,7 @@ public class TestController : Controller
     }
 
     [HttpGet]
-    
+    // https://localhost:7186/api/test
     public JsonResult Test() {
         var countries = httpService.GetUrl<List<CountryModel>>("https://restcountries.com/v3.1/name/peru");
         return new JsonResult(countries);
