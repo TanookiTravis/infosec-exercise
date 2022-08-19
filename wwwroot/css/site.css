@@ -37,6 +37,7 @@ body {
   padding-bottom: 1.5rem;
   background: var(--black);
   margin: 0 auto;
+  font-size: 1.5em;
 }
 
 .navbar-brand-box {

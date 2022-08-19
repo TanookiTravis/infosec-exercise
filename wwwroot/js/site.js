@@ -12,21 +12,51 @@ var bySelector = function( selector ) { return document.querySelector( selector 
 byId("search-button").addEventListener('click', function(){
     const searchTerm = byId("search-box").value;
     console.log("searchTerm", searchTerm);
-    searchByTerm(searchTerm);
-    console.log("called searchByTerm()", "true");
+    // const response = searchByTerm(searchTerm);
+    const response = searchByTermConst(searchTerm);
+    console.log("response", response);
 });
 
-function searchByTerm(searchTerm) {
+// check for country querystring
+const urlParams = new URLSearchParams(location.search);
+for (const [key, value] of urlParams) {
+    if(key == "country") {
+        console.log("country in QS", true);
+        // ajax call to load single country results
+    }
+    console.log(`${key}:${value}`);
+}
+
+const searchByTermConst = (searchTerm) => {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            byId("search-results").innerHTML = this.responseText;
+            console.log("func const called");
+            byId("search-results").innerHTML = buildResults(JSON.parse(this.responseText));
         }
     };
     xhttp.open("GET", "https://localhost:7186/api/country/filter/" + searchTerm, true);
     xhttp.send();
+    return false;
 }
 
-function buildResults(results) {
-    
+const buildResults = (data) => {
+    console.log("data", data);
+    let resultsMarkup = `<ul>`;
+
+    if(data.length) {
+        let resultCount = 0;
+        for (x in data) {
+            console.log("region", data[x].region);
+            resultsMarkup += `
+                <li><a href="?country=${data[x].cca2}">${data[x].name.common}</a></li>
+            `;
+            resultCount++;
+        }
+        console.log("resultCount", resultCount);
+        resultsMarkup += `</ul><p>Showing ${resultCount} result${resultCount > 1 ? `s` : ``}`;
+    } else {
+        resultsMarkup = `<p>No results</p>`;
+    }
+    return resultsMarkup;
 }
