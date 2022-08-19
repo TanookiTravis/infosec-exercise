@@ -36,7 +36,6 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   background: var(--black);
-  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -60,6 +59,22 @@ body {
 .content {
   padding: 5rem 8rem;
   font-size: 1rem;
+}
+
+.search-label {
+
+}
+
+.search-box {
+  
+}
+
+.search-button {
+  
+}
+
+.search-results {
+  
 }
 
 /* color classes */
