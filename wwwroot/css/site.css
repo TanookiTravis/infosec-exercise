@@ -78,6 +78,14 @@ body {
   
 }
 
+ul {
+  margin-top: 20px;
+}
+
+li > ul {
+  margin-top: 0px;
+}
+
 /* color classes */
 .color-green {
   background-clip: text;
@@ -94,4 +102,8 @@ h1 {
 
 h2 {
   font-weight: 700;
+}
+
+h3 {
+  margin-top: 25px;
 }

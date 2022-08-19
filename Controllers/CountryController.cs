@@ -32,6 +32,13 @@ public class CountryController : Controller
         return new JsonResult(countries);
     }
 
+    [HttpGet("code/{code}")]
+    // https://localhost:7186/api/country/name/peru
+    public JsonResult GetByCode(string code) {
+        var countries = httpService.GetUrl<List<CountryModel>>("https://restcountries.com/v3.1/alpha/" + code);
+        return new JsonResult(countries);
+    }
+
     [HttpGet("filter/{term}")]
     // https://localhost:7186/api/country/filter/pe
     public JsonResult GetByTerm(string term) {
@@ -41,7 +48,8 @@ public class CountryController : Controller
             .Where(c => c.Name.Common.ToLower().Contains(termLowerCase) 
                 || c.Name.Official.ToLower().Contains(termLowerCase)
                 || c.AlphaCode2.ToLower().Contains(termLowerCase)
-                || c.AlphaCode3.ToLower().Contains(termLowerCase));
+                || c.AlphaCode3.ToLower().Contains(termLowerCase))
+            .OrderByDescending(p => p.Population);
         return new JsonResult(filterdCountries);
     }
 }
