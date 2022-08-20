@@ -82,7 +82,7 @@ ul {
   margin-top: 20px;
 }
 
-li > ul {
+li > ul, .no-top-margin {
   margin-top: 0px;
 }
 
