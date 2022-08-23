@@ -1,5 +1,5 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+// FYI: typically I delete all console logs after completion of an app but
+// I left most of them in for this exercise to better demonstrate my thought process
 
 // document.getElementById shorthand function
 // ex: byId("div-id").classList.add("new-class");
@@ -8,7 +8,7 @@ var byId = function( id ) { return document.getElementById( id ); };
 var bySelector = function( selector ) { return document.querySelector( selector ); };
 // ex: bySelector("div-class").classList.add("new-class");
 
-
+// submit button click handling
 byId("search-button").addEventListener('click', function(){
     const searchTerm = byId("search-box").value;
     console.log("searchTerm", searchTerm);
